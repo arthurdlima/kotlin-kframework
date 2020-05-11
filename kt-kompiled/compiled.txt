@@ -1319,7 +1319,7 @@ module KSTRING$SYNTAX [org.kframework.attributes.Location(Location(15,1,18,9)) o
 endmodule
 
 
-module KT [org.kframework.attributes.Location(Location(72,1,77,9)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))]
+module KT [org.kframework.attributes.Location(Location(71,1,76,9)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))]
   imports KT-SYNTAX
   imports KT$SYNTAX
   imports DOMAINS
@@ -1418,7 +1418,7 @@ module KT [org.kframework.attributes.Location(Location(72,1,77,9)) org.kframewor
 endmodule
 
 
-module KT$SYNTAX [org.kframework.attributes.Location(Location(72,1,77,9)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))]
+module KT$SYNTAX [org.kframework.attributes.Location(Location(71,1,76,9)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))]
   imports KT-SYNTAX$SYNTAX
   imports DOMAINS$SYNTAX
   syntax KResult ::= Int
@@ -1431,7 +1431,7 @@ module KT$SYNTAX [org.kframework.attributes.Location(Location(72,1,77,9)) org.kf
 endmodule
 
 
-module KT-SYNTAX [org.kframework.attributes.Location(Location(1,1,66,11)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))]
+module KT-SYNTAX [org.kframework.attributes.Location(Location(1,1,65,11)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))]
   imports KT-SYNTAX$SYNTAX
   imports DOMAINS
   rule `<generatedTop>`(`<k>`(`` `if(_)___KT-SYNTAX_Statement_BExp_Block_ElseIfStatement`(#token("true","Bool"),`{_}_KT-SYNTAX_Block_Statement`(B),S)=>B``~>DotVar1),DotVar0) requires #token("true","Bool") ensures #token("true","Bool") [UNIQUE_ID(8276da6f7e205916db58ee405a1a45eded3aa408f06f0c6a5ebc95371d8f969b) contentStartColumn(8) contentStartLine(49) org.kframework.attributes.Location(Location(49,8,49,46)) org.kframework.attributes.Source(Source(/\workspace/./kt.k)) org.kframework.definition.Production(syntax #RuleContent ::= #RuleBody [klabel(#ruleNoConditions) symbol()])]
@@ -1453,13 +1453,11 @@ module KT-SYNTAX [org.kframework.attributes.Location(Location(1,1,66,11)) org.kf
   rule `<generatedTop>`(`<k>`(`` `_+__KT-SYNTAX_AExp_AExp_AExp`(I1,I2)=>`_+Int_`(I1,I2)``~>DotVar1),DotVar0) requires #token("true","Bool") ensures #token("true","Bool") [UNIQUE_ID(84cb4602d86fc8dd351a6ce9617c99886ff696489a3beca94f4f5af13c4ed39b) contentStartColumn(8) contentStartLine(58) org.kframework.attributes.Location(Location(58,8,58,37)) org.kframework.attributes.Source(Source(/\workspace/./kt.k)) org.kframework.definition.Production(syntax #RuleContent ::= #RuleBody [klabel(#ruleNoConditions) symbol()])]
   rule `<generatedTop>`(`<k>`(`` `_*__KT-SYNTAX_AExp_AExp_AExp`(I1,I2)=>`_*Int_`(I1,I2)``~>DotVar1),DotVar0) requires #token("true","Bool") ensures #token("true","Bool") [UNIQUE_ID(eead6f48316b22ead16ef82b935c7e01c3a25985bd2df614c06b41da7f39afad) contentStartColumn(8) contentStartLine(60) org.kframework.attributes.Location(Location(60,8,60,37)) org.kframework.attributes.Source(Source(/\workspace/./kt.k)) org.kframework.definition.Production(syntax #RuleContent ::= #RuleBody [klabel(#ruleNoConditions) symbol()])]
   rule `<generatedTop>`(`<k>`(`` `Skip_KT-SYNTAX_Skip`(.KList)=>.K``~>DotVar1),DotVar0) requires #token("true","Bool") ensures #token("true","Bool") [UNIQUE_ID(7cc01e097372e726e1b9130596f445ac64cef89564cb6d04f12172b751d2229c) contentStartColumn(8) contentStartLine(45) org.kframework.attributes.Location(Location(45,8,45,17)) org.kframework.attributes.Source(Source(/\workspace/./kt.k)) org.kframework.definition.Production(syntax #RuleContent ::= #RuleBody [klabel(#ruleNoConditions) symbol()])]
-  ModuleComment(ver o que são esses dois,[org.kframework.attributes.Location(Location(41,3,41,29)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))])
-  ModuleComment(rule local(I:Id, S1:Statement S2:Statement) => local(I, S1) ~> local(I, S2) [structural],[org.kframework.attributes.Location(Location(43,3,43,93)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))])
-  ModuleComment(,[org.kframework.attributes.Location(Location(44,3,44,5)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))])
+  ModuleComment(rule local(I:Id, S1:Statement S2:Statement) => local(I, S1) ~> local(I, S2) [structural],[org.kframework.attributes.Location(Location(42,3,42,93)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))])
 endmodule
 
 
-module KT-SYNTAX$SYNTAX [org.kframework.attributes.Location(Location(1,1,66,11)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))]
+module KT-SYNTAX$SYNTAX [org.kframework.attributes.Location(Location(1,1,65,11)) org.kframework.attributes.Source(Source(/\workspace/./kt.k))]
   imports DOMAINS$SYNTAX
   syntax priority  > _*__KT-SYNTAX_AExp_AExp_AExp > _/__KT-SYNTAX_AExp_AExp_AExp _-__KT-SYNTAX_AExp_AExp_AExp _+__KT-SYNTAX_AExp_AExp_AExp
   syntax associativity left ___KT-SYNTAX_Statement_Statement_Statement
