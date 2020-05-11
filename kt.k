@@ -38,10 +38,10 @@ module KT-SYNTAX
 
   rule fun main() { B:Block } => B [structural]
 
-  //ver o que são esses dois
+  ver o que são esses dois
   rule S1:Statement S2:Statement => S1 ~> S2 [structural]
   //rule local(I:Id, S1:Statement S2:Statement) => local(I, S1) ~> local(I, S2) [structural]
-  //
+
   rule Skip => .
 
   rule if (true) { S:Statement } => S
