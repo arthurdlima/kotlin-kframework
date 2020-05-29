@@ -30,7 +30,6 @@ module KT-SYNTAX
                     | AExp
                     | AExpMod
                     | Skip
-              //      | DeclaredVar ";"
                     | Assigner
                     | Assigner2
                     | Statement Statement [left]
@@ -61,14 +60,6 @@ module KT-SYNTAX
 
   // ---------- REGRAS ------------
 
-/*
-  Regra: var x; ou var x, não PODE EM KOTLIN
-  rule <k> T:VariableType I:Id ; => Skip ... </k>
-      <env> MEnv:Map => MEnv I |-> L </env>
-      <store> MStore:Map => MStore L |-> 0 </store>
-      <loc> L:Int => L +Int 1 </loc>
-*/
-  //rule T:VariableType .Ids ; => Skip
   rule T:VariableType .Ids = _:Int ; => Skip
   rule T:VariableType .Ids = _:Int => Skip
 
@@ -77,10 +68,25 @@ module KT-SYNTAX
       <store> MStore:Map => MStore L |-> V </store>
       <loc> L:Int => L +Int 1 </loc>
 
-    rule <k> var I:Id = V:Int => Skip ... </k>
+  rule <k> var I:Id = V:Int => Skip ... </k>
+      <env> MEnv:Map => MEnv I |-> L </env>
+      <store> MStore:Map => MStore L |-> V </store>
+      <loc> L:Int => L +Int 1 </loc>
+
+  // Para: var x,y,z = n; ou var x,y,z = n
+
+  rule <k> T:VariableType (I:Id, Is:Ids) = V:Int ; => T Is = V ; ... </k>
+      <env> MEnv:Map => MEnv I |-> L </env>
+      <store> MStore:Map => MStore L |-> V </store>
+      <loc> L:Int => L +Int 1 </loc>
+
+    rule <k> T:VariableType (I:Id, Is:Ids) = V:Int => T Is = V ... </k>
         <env> MEnv:Map => MEnv I |-> L </env>
         <store> MStore:Map => MStore L |-> V </store>
         <loc> L:Int => L +Int 1 </loc>
+
+
+  // ------ Alteração de variavies em memória abaixo-----------
 
   rule <k> I:Id = V:Int => Skip ... </k>
       <env> ... I |-> L ... </env>
@@ -107,21 +113,12 @@ module KT-SYNTAX
 
 
 //-----------------------------------------
-/*
-  rule <k> T:VariableType (I:Id, Xs:Ids) ; => T Xs ; ... </k>
-      <env> MEnv:Map => MEnv I |-> L </env>
-      <store> MStore:Map => MStore L |-> 0 </store>
-      <loc> L:Int => L +Int 1 </loc>
-
-  rule <k> T:VariableType (I:Id, Xs:Ids) = V:Int ; => T Xs = V ; ... </k>
-      <env> MEnv:Map => MEnv I |-> L </env>
-      <store> MStore:Map => MStore L |-> V </store>
-      <loc> L:Int => L +Int 1 </loc>
-*/
-
 
   rule fun main() { B:Block } => B [structural]
 
+
+  // Resolve e empilha dois statements. Ex: x = 2 y = 4.
+  // Separa (empilha) x=2, resolve, depois resolve y.
   rule S1:Statement S2:Statement => S1 ~> S2 [structural]
 
   rule Skip => .

@@ -1,6 +1,6 @@
 default: &id001
   action:
-  - 3317
+  - 3319
   - []
 specializations:
 - - kseq{}
@@ -11,7 +11,7 @@ specializations:
         specializations:
         - - inj{SortDeclaredVar{}, SortKItem{}}
           - action:
-            - 3318
+            - 3320
             - []
           - [STRING.String]
         sort: STRING.String

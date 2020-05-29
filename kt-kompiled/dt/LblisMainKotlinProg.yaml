@@ -1,6 +1,6 @@
 default: &id001
   action:
-  - 3366
+  - 3368
   - []
 specializations:
 - - kseq{}
@@ -11,7 +11,7 @@ specializations:
         specializations:
         - - inj{SortMainKotlinProg{}, SortKItem{}}
           - action:
-            - 3367
+            - 3369
             - []
           - [STRING.String]
         sort: STRING.String

@@ -8,14 +8,14 @@ specializations:
         specializations:
         - - inj{SortAExp{}, SortKItem{}}
           - action:
-            - 3401
+            - 3403
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
         - - inj{SortId{}, SortKItem{}}
           - &id001
             action:
-            - 3401
+            - 3403
             - - - &id002 ['0', '1']
                 - STRING.String
           - [STRING.String]
