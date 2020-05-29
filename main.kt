@@ -1,4 +1,4 @@
 
 fun main() {
-  integer x;
+  var x = 2
 }

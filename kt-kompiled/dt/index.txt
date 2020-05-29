@@ -1,3 +1,4 @@
+Lblproject'Coln'Assigner2	Lblproject'Coln'Assigner2.yaml
 LblisSet	LblisSet.yaml
 Lbl'Stop'Map	Lbl'Stop'Map.yaml
 LblrfindString'LParUndsCommUndsCommUndsRParUnds'STRING'Unds'Int'Unds'String'Unds'String'Unds'Int	LblrfindString'LParUndsCommUndsCommUndsRParUnds'STRING'Unds'Int'Unds'String'Unds'String'Unds'Int.yaml
@@ -5,6 +6,7 @@ LblisEnvCellOpt	LblisEnvCellOpt.yaml
 LblisCell	LblisCell.yaml
 Lbl'Unds-GT-'Int'Unds'	Lbl'Unds-GT-'Int'Unds'.yaml
 LblisMap	LblisMap.yaml
+LblisMainKotlinProg	LblisMainKotlinProg.yaml
 LblinitKCell	LblinitKCell.yaml
 LblisGeneratedCounterCell	LblisGeneratedCounterCell.yaml
 Lbl'Unds'andThenBool'Unds'	Lbl'Unds'andThenBool'Unds'.yaml
@@ -20,6 +22,7 @@ LblfreshInt'LParUndsRParUnds'INT'Unds'Int'Unds'Int	LblfreshInt'LParUndsRParUnds'
 LblisIOFile	LblisIOFile.yaml
 LblSet'Coln'in	LblSet'Coln'in.yaml
 LblisIOError	LblisIOError.yaml
+LblisAssigner	LblisAssigner.yaml
 Lblproject'Coln'TCellOpt	Lblproject'Coln'TCellOpt.yaml
 Lblproject'Coln'IOFile	Lblproject'Coln'IOFile.yaml
 Lblproject'ColnHash'unknownIOError'Coln'errno	Lblproject'ColnHash'unknownIOError'Coln'errno.yaml
@@ -71,6 +74,7 @@ Lblproject'Coln'TCellFragment	Lblproject'Coln'TCellFragment.yaml
 LblFloat2String'LParUndsRParUnds'STRING'Unds'String'Unds'Float	LblFloat2String'LParUndsRParUnds'STRING'Unds'String'Unds'Float.yaml
 Lbl'Unds'modInt'Unds'	Lbl'Unds'modInt'Unds'.yaml
 LblisIOInt	LblisIOInt.yaml
+LblisIds	LblisIds.yaml
 Lbl'Unds-GT-'String'UndsUnds'STRING'Unds'Bool'Unds'String'Unds'String	Lbl'Unds-GT-'String'UndsUnds'STRING'Unds'Bool'Unds'String'Unds'String.yaml
 Lbl'Hash'remove'LParUndsRParUnds'K-IO'Unds'K'Unds'String	Lbl'Hash'remove'LParUndsRParUnds'K-IO'Unds'K'Unds'String.yaml
 Lblproject'Coln'EnvCellOpt	Lblproject'Coln'EnvCellOpt.yaml
@@ -81,13 +85,16 @@ Lbl'UndsPlus'String'UndsUnds'STRING'Unds'String'Unds'String'Unds'String	Lbl'Unds
 LblSet'Coln'difference	LblSet'Coln'difference.yaml
 Lbl'Unds'Set'Unds'	Lbl'Unds'Set'Unds'.yaml
 LblisAExp	LblisAExp.yaml
+LblisUniqueIdAssigner	LblisUniqueIdAssigner.yaml
 Lbl'UndsSlsh'Int'Unds'	Lbl'UndsSlsh'Int'Unds'.yaml
-Lblproject'Coln'DeclareUniqueVar	Lblproject'Coln'DeclareUniqueVar.yaml
 LblisEnvCell	LblisEnvCell.yaml
 LblId2String'LParUndsRParUnds'ID-SYNTAX'Unds'String'Unds'Id	LblId2String'LParUndsRParUnds'ID-SYNTAX'Unds'String'Unds'Id.yaml
+LblisAssigner2	LblisAssigner2.yaml
+Lblproject'Coln'DeclaredVar	Lblproject'Coln'DeclaredVar.yaml
 Lbl'UndsPipe'-'-GT-Unds'	Lbl'UndsPipe'-'-GT-Unds'.yaml
 LblsignExtendBitRangeInt'LParUndsCommUndsCommUndsRParUnds'INT-COMMON'Unds'Int'Unds'Int'Unds'Int'Unds'Int	LblsignExtendBitRangeInt'LParUndsCommUndsCommUndsRParUnds'INT-COMMON'Unds'Int'Unds'Int'Unds'Int'Unds'Int.yaml
 Lbl'UndsEqlsSlshEqls'Bool'Unds'	Lbl'UndsEqlsSlshEqls'Bool'Unds'.yaml
+Lblproject'Coln'Assigner	Lblproject'Coln'Assigner.yaml
 Lbl'UndsEqlsEqls'String'UndsUnds'STRING'Unds'Bool'Unds'String'Unds'String	Lbl'UndsEqlsEqls'String'UndsUnds'STRING'Unds'Bool'Unds'String'Unds'String.yaml
 Lblproject'Coln'BExp	Lblproject'Coln'BExp.yaml
 Lblproject'Coln'Block	Lblproject'Coln'Block.yaml
@@ -99,6 +106,7 @@ Lblproject'Coln'Cell	Lblproject'Coln'Cell.yaml
 Lblproject'Coln'Statement	Lblproject'Coln'Statement.yaml
 Lbl'UndsEqlsSlshEqls'Int'Unds'	Lbl'UndsEqlsSlshEqls'Int'Unds'.yaml
 LblgetGeneratedCounterCell	LblgetGeneratedCounterCell.yaml
+LblisDeclaredVar	LblisDeclaredVar.yaml
 Lbl'Unds-LT-Eqls'Set'UndsUnds'SET'Unds'Bool'Unds'Set'Unds'Set	Lbl'Unds-LT-Eqls'Set'UndsUnds'SET'Unds'Bool'Unds'Set'Unds'Set.yaml
 Lblsize'LParUndsRParUnds'SET'Unds'Int'Unds'Set	Lblsize'LParUndsRParUnds'SET'Unds'Int'Unds'Set.yaml
 LblisGeneratedTopCellFragment	LblisGeneratedTopCellFragment.yaml
@@ -106,12 +114,15 @@ LblMap'Coln'lookup	LblMap'Coln'lookup.yaml
 LblisLocCellOpt	LblisLocCellOpt.yaml
 Lblproject'Coln'GeneratedCounterCell	Lblproject'Coln'GeneratedCounterCell.yaml
 LblupdateMap'LParUndsCommUndsRParUnds'MAP'Unds'Map'Unds'Map'Unds'Map	LblupdateMap'LParUndsCommUndsRParUnds'MAP'Unds'Map'Unds'Map'Unds'Map.yaml
+Lblproject'Coln'MainKotlinProg	Lblproject'Coln'MainKotlinProg.yaml
 Lbl'UndsPerc'Int'Unds'	Lbl'UndsPerc'Int'Unds'.yaml
+Lblproject'Coln'Ids	Lblproject'Coln'Ids.yaml
 LblisKConfigVar	LblisKConfigVar.yaml
 Lbl'Unds-GT-Eqls'Int'Unds'	Lbl'Unds-GT-Eqls'Int'Unds'.yaml
 Lbl'Unds'dividesInt'UndsUnds'INT-COMMON'Unds'Bool'Unds'Int'Unds'Int	Lbl'Unds'dividesInt'UndsUnds'INT-COMMON'Unds'Bool'Unds'Int'Unds'Int.yaml
 Lblproject'Coln'LocCellOpt	Lblproject'Coln'LocCellOpt.yaml
 Lbl'Hash'if'UndsHash'then'UndsHash'else'UndsHash'fi'Unds'K-EQUAL'Unds'Sort'Unds'Bool'Unds'Sort'Unds'Sort	Lbl'Hash'if'UndsHash'then'UndsHash'else'UndsHash'fi'Unds'K-EQUAL'Unds'Sort'Unds'Bool'Unds'Sort'Unds'Sort.yaml
+Lblproject'Coln'UniqueIdAssigner	Lblproject'Coln'UniqueIdAssigner.yaml
 Lbl'Unds-LT-Eqls'Map'UndsUnds'MAP'Unds'Bool'Unds'Map'Unds'Map	Lbl'Unds-LT-Eqls'Map'UndsUnds'MAP'Unds'Bool'Unds'Map'Unds'Map.yaml
 Lbl'Unds-LT-'Int'Unds'	Lbl'Unds-LT-'Int'Unds'.yaml
 LblisGeneratedCounterCellOpt	LblisGeneratedCounterCellOpt.yaml
@@ -123,7 +134,6 @@ LblisTCellOpt	LblisTCellOpt.yaml
 Lblproject'Coln'String	Lblproject'Coln'String.yaml
 Lbl'Hash'open'LParUndsRParUnds'K-IO'Unds'IOInt'Unds'String	Lbl'Hash'open'LParUndsRParUnds'K-IO'Unds'IOInt'Unds'String.yaml
 LblisKCellOpt	LblisKCellOpt.yaml
-Lblproject'Coln'Program	Lblproject'Coln'Program.yaml
 LblisBool	LblisBool.yaml
 LblisStoreCellOpt	LblisStoreCellOpt.yaml
 LblisIOString	LblisIOString.yaml
@@ -151,7 +161,6 @@ Lbl'UndsLSqBUnds-LT-'-undef'RSqB'	Lbl'UndsLSqBUnds-LT-'-undef'RSqB'.yaml
 LblisInt	LblisInt.yaml
 LblnotBool'Unds'	LblnotBool'Unds'.yaml
 LblcountAllOccurrences'LParUndsCommUndsRParUnds'STRING'Unds'Int'Unds'String'Unds'String	LblcountAllOccurrences'LParUndsCommUndsRParUnds'STRING'Unds'Int'Unds'String'Unds'String.yaml
-LblisDeclareUniqueVar	LblisDeclareUniqueVar.yaml
 LblisBlock	LblisBlock.yaml
 Lblproject'Coln'IOError	Lblproject'Coln'IOError.yaml
 Lblproject'Coln'EnvCell	Lblproject'Coln'EnvCell.yaml
@@ -188,4 +197,3 @@ Lbl'UndsEqlsSlshEqls'K'Unds'	Lbl'UndsEqlsSlshEqls'K'Unds'.yaml
 Lblproject'Coln'Skip	Lblproject'Coln'Skip.yaml
 LblString2Id'LParUndsRParUnds'ID-SYNTAX'Unds'Id'Unds'String	LblString2Id'LParUndsRParUnds'ID-SYNTAX'Unds'Id'Unds'String.yaml
 Lbl'Unds'List'Unds'	Lbl'Unds'List'Unds'.yaml
-LblisProgram	LblisProgram.yaml
