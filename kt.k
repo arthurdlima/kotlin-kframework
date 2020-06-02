@@ -8,7 +8,11 @@ module KT-SYNTAX
   // ------ DECLARAÇÃO DE VARIÁVEIS -------
 
 
-  syntax VariableType ::= "var" | "val"
+  syntax VariableType ::= "var"
+
+  //KOTLIN VARIABLE ASSIGN INT : var x: Int
+  syntax KotIntVarAssign ::= VariableType Id ":" "Int"
+                          | VariableType Id ":" "Int" ";"
 
   syntax Ids ::= List{Id, ","}
 
@@ -27,12 +31,17 @@ module KT-SYNTAX
   syntax Statement ::= "if" "(" BExp ")" Block [strict(1)]
                     | BExp "?" Block ":" Block [strict(1)]
                     | "if" "(" BExp ")" Block ElseIfStatement [strict(1)]
+                    | "while" "(" BExp ")" Block
+                  //  | "forEach" "{" Id "->" Array "}" Block
+                    | "for" "(" Assigner2 ";" BExp ";" AExpMod ")" Block
                     | AExp
                     | AExpMod
                     | Skip
                     | Assigner
                     | Assigner2
+                    | KotIntVarAssign
                     | Statement Statement [left]
+
 
   syntax ElseIfStatement ::= "else if" "(" BExp ")" Block
                           | "else if" "(" BExp ")" Block ElseIfStatement
@@ -56,12 +65,40 @@ module KT-SYNTAX
                 | AExp "+" AExp [seqstrict]
                 | "(" AExp ")" [bracket]
 
+
   syntax Skip ::= "Skip"
 
-  // ---------- REGRAS ------------
+  // ---------- REGRAS INTEIRO ------------
 
   rule T:VariableType .Ids = _:Int ; => Skip
   rule T:VariableType .Ids = _:Int => Skip
+  // REGRA KOTLIN ASSIGN INTEIRO
+
+  rule VariableType Id : Int => Skip
+  //rule VariableType .Ids : Int ; => Skip
+
+  // REGRA KOTLIN ASSIGN INTEIRO EM MEMÓRIA --------
+
+  rule <k> T:VariableType I:Id : Int => Skip ... </k>
+    <env> MEnv:Map => MEnv I |-> L </env>
+    <store> MStore:Map => MStore L |-> 0 </store>
+    <loc> L:Int => L +Int 1 </loc>
+  /*
+  rule <k> T:VariableType I:Id : Int ; => Skip ... </k>
+    <env> MEnv:Map => MEnv I |-> L </env>
+    <store> MStore:Map => MStore L |-> 0 </store>
+    <loc> L:Int => L +Int 1 </loc>
+
+  rule <k> T:VariableType (I:Id, Xs:Ids) : Int ; => T Xs : Int; ... </k>
+    <env> MEnv:Map => MEnv I |-> L </env>
+    <store> MStore:Map => MStore L |-> 0 </store>
+    <loc> L:Int => L +Int 1 </loc>
+  rule <k> T:VariableType (I:Id, Xs:Ids) : Int => T Xs : Int ... </k>
+    <env> MEnv:Map => MEnv I |-> L </env>
+    <store> MStore:Map => MStore L |-> 0 </store>
+    <loc> L:Int => L +Int 1 </loc>
+    */
+  // -------------------------------------------------
 
   rule <k> var I:Id = V:Int ; => Skip ... </k>
       <env> MEnv:Map => MEnv I |-> L </env>
@@ -80,10 +117,15 @@ module KT-SYNTAX
       <store> MStore:Map => MStore L |-> V </store>
       <loc> L:Int => L +Int 1 </loc>
 
-    rule <k> T:VariableType (I:Id, Is:Ids) = V:Int => T Is = V ... </k>
-        <env> MEnv:Map => MEnv I |-> L </env>
-        <store> MStore:Map => MStore L |-> V </store>
-        <loc> L:Int => L +Int 1 </loc>
+  rule <k> T:VariableType (I:Id, Is:Ids) = V:Int => T Is = V ... </k>
+      <env> MEnv:Map => MEnv I |-> L </env>
+      <store> MStore:Map => MStore L |-> V </store>
+      <loc> L:Int => L +Int 1 </loc>
+
+
+  // ------- REGRAS BOOLEANO ---------------------------
+
+
 
 
   // ------ Alteração de variavies em memória abaixo-----------
@@ -96,9 +138,11 @@ module KT-SYNTAX
       <env> ... I2 |-> L ... </env>
       <store> ... L |-> V  ... </store>
 
+
   rule <k> I:Id => V ... </k>
       <env> ... I |-> L ... </env>
       <store> ... L |-> V ... </store>
+
 
   // Para: x++
   rule <k> I:Id ++ => Skip ... </k>
@@ -136,6 +180,9 @@ module KT-SYNTAX
   logo, guardar na posição L (que é 1) de memória o valor 0
 
   */
+  rule while ( B:BExp ) { S:Statement } => if (B) { S while ( B ) { S } } [structural]
+  rule for (A:Assigner2 ; B:BExp ; AEM:AExpMod ) {S}
+    => A ~> while (B) { S AEM } [structural]
 
   rule if (true) { S:Statement } => S
   rule if (false) { _ } => Skip

@@ -1,6 +1,6 @@
 default: &id001
   action:
-  - 3522
+  - 3521
   - []
 specializations:
 - - kseq{}
@@ -11,7 +11,7 @@ specializations:
         specializations:
         - - inj{SortLocal{}, SortKItem{}}
           - action:
-            - 3523
+            - 3522
             - []
           - [STRING.String]
         sort: STRING.String

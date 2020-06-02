@@ -29,7 +29,7 @@ module HOPPER-SYNTAX
     syntax FuncDec ::= "function" Id "(" Params ")" Block
     syntax Values ::= List{Int, ","}
     syntax FuncCall ::= Id "(" Values ")"
-    //syntax Local ::= "local" "(" Id "," Stmt ")"
+    syntax Local ::= "local" "(" Id "," Stmt ")"
 
     syntax ListValues ::= List{Int, ","}
     syntax ArrayList ::= "[" ListValues "]"

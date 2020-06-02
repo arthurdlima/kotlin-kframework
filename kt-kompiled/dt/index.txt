@@ -162,6 +162,7 @@ LblisInt	LblisInt.yaml
 LblnotBool'Unds'	LblnotBool'Unds'.yaml
 LblcountAllOccurrences'LParUndsCommUndsRParUnds'STRING'Unds'Int'Unds'String'Unds'String	LblcountAllOccurrences'LParUndsCommUndsRParUnds'STRING'Unds'Int'Unds'String'Unds'String.yaml
 LblisBlock	LblisBlock.yaml
+LblisKotIntVarAssign	LblisKotIntVarAssign.yaml
 Lblproject'Coln'IOError	Lblproject'Coln'IOError.yaml
 Lblproject'Coln'EnvCell	Lblproject'Coln'EnvCell.yaml
 Lbl'Unds'divInt'Unds'	Lbl'Unds'divInt'Unds'.yaml
@@ -171,6 +172,7 @@ Lbl'UndsAnd-'Int'Unds'	Lbl'UndsAnd-'Int'Unds'.yaml
 Lbl'UndsEqlsEqls'Int'Unds'	Lbl'UndsEqlsEqls'Int'Unds'.yaml
 LblisBExp	LblisBExp.yaml
 Lbl'Unds-LT-Eqls'Int'Unds'	Lbl'Unds-LT-Eqls'Int'Unds'.yaml
+Lblproject'Coln'KotIntVarAssign	Lblproject'Coln'KotIntVarAssign.yaml
 Lbl'Unds-GT--GT-'Int'Unds'	Lbl'Unds-GT--GT-'Int'Unds'.yaml
 LblisStoreCell	LblisStoreCell.yaml
 Lbl'Unds-LT--LT-'Int'Unds'	Lbl'Unds-LT--LT-'Int'Unds'.yaml

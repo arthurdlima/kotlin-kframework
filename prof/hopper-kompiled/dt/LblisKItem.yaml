@@ -1,6 +1,6 @@
 default: &id001
   action:
-  - 3510
+  - 3509
   - []
 specializations:
 - - kseq{}
@@ -8,7 +8,7 @@ specializations:
     specializations:
     - - dotk{}
       - action:
-        - 3511
+        - 3510
         - []
       - []
     sort: STRING.String

@@ -1,7 +1,6 @@
 program {
 
-integer x,y,z = 2;
-
-
+integer x = 2;
+integer y = x+2;
 
 }

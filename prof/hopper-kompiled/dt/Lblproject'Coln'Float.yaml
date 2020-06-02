@@ -8,7 +8,7 @@ specializations:
         specializations:
         - - inj{SortFloat{}, SortKItem{}}
           - action:
-            - 3597
+            - 3596
             - - - ['0', '0', '1']
                 - FLOAT.Float
           - [FLOAT.Float]
