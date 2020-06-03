@@ -8,14 +8,14 @@ specializations:
         specializations:
         - - inj{SortIOString{}, SortKItem{}}
           - action:
-            - 3448
+            - 3470
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
         - - inj{SortIOError{}, SortKItem{}}
           - &id001
             action:
-            - 3448
+            - 3470
             - - - &id002 ['0', '1']
                 - STRING.String
           - [STRING.String]

@@ -1,4 +1,5 @@
 modules FUNCTION
-  syntax Name ::= ${}
+  syntax FunReturnType
+  syntax Fun ::= "fun" "(" ")" ":" FunReturnType "{" Block "}"
 
 endmodule

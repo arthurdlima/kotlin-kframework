@@ -8,13 +8,13 @@ specializations:
         specializations:
         - - inj{SortAssigner{}, SortKItem{}}
           - action:
-            - 3430
+            - 3450
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
         - - inj{SortUniqueIdAssigner{}, SortKItem{}}
           - action:
-            - 3430
+            - 3450
             - - - &id001 ['0', '1']
                 - STRING.String
           - [STRING.String]

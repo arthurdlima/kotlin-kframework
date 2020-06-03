@@ -1,6 +1,9 @@
 
 fun main() {
-  var x: Int
 
+  fun sum (): Int {
+    var x = 0
+    return 2
+  }
 
 }

@@ -1,6 +1,6 @@
 default: &id001
   action:
-  - 3439
+  - 3405
   - []
 specializations:
 - - kseq{}
@@ -9,9 +9,9 @@ specializations:
     - - dotk{}
       - default: *id001
         specializations:
-        - - inj{SortVariableType{}, SortKItem{}}
+        - - inj{SortKotlinFun{}, SortKItem{}}
           - action:
-            - 3440
+            - 3406
             - []
           - [STRING.String]
         sort: STRING.String

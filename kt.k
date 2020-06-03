@@ -1,9 +1,22 @@
+
 module KT-SYNTAX
   import DOMAINS
+
   syntax MainKotlinProg ::= "fun main()" "{" Block "}"
 
   syntax Block ::= "{" Statement "}"
                 | Statement
+
+
+  //----------- KOTLIN FUNCTIONS -------------
+  syntax FunReturnType ::= "String"
+                        | "Int"
+
+  syntax KotlinFun ::= "fun" Id "(" ")" ":" FunReturnType FunBlock
+
+  syntax FunBlock ::= "{" Statement "return" AExp "}"
+// ------------------------------------------
+
 
   // ------ DECLARAÇÃO DE VARIÁVEIS -------
 
@@ -40,6 +53,7 @@ module KT-SYNTAX
                     | Assigner
                     | Assigner2
                     | KotIntVarAssign
+                    | KotlinFun
                     | Statement Statement [left]
 
 

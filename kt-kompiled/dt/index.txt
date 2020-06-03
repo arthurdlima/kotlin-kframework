@@ -4,6 +4,7 @@ Lbl'Stop'Map	Lbl'Stop'Map.yaml
 LblrfindString'LParUndsCommUndsCommUndsRParUnds'STRING'Unds'Int'Unds'String'Unds'String'Unds'Int	LblrfindString'LParUndsCommUndsCommUndsRParUnds'STRING'Unds'Int'Unds'String'Unds'String'Unds'Int.yaml
 LblisEnvCellOpt	LblisEnvCellOpt.yaml
 LblisCell	LblisCell.yaml
+Lblproject'Coln'KotlinFun	Lblproject'Coln'KotlinFun.yaml
 Lbl'Unds-GT-'Int'Unds'	Lbl'Unds-GT-'Int'Unds'.yaml
 LblisMap	LblisMap.yaml
 LblisMainKotlinProg	LblisMainKotlinProg.yaml
@@ -20,6 +21,7 @@ LblSetItem	LblSetItem.yaml
 Lblproject'Coln'AExpMod	Lblproject'Coln'AExpMod.yaml
 LblfreshInt'LParUndsRParUnds'INT'Unds'Int'Unds'Int	LblfreshInt'LParUndsRParUnds'INT'Unds'Int'Unds'Int.yaml
 LblisIOFile	LblisIOFile.yaml
+Lblproject'Coln'FunBlock	Lblproject'Coln'FunBlock.yaml
 LblSet'Coln'in	LblSet'Coln'in.yaml
 LblisIOError	LblisIOError.yaml
 LblisAssigner	LblisAssigner.yaml
@@ -44,6 +46,7 @@ Lbl'Hash'stdout'Unds'K-IO'Unds'Int	Lbl'Hash'stdout'Unds'K-IO'Unds'Int.yaml
 LblisLocCell	LblisLocCell.yaml
 LblisKItem	LblisKItem.yaml
 Lbl'Hash'stderr'Unds'K-IO'Unds'Int	Lbl'Hash'stderr'Unds'K-IO'Unds'Int.yaml
+LblisFunReturnType	LblisFunReturnType.yaml
 Lbl'UndsLSqBUndsRSqB'orDefault'UndsUnds'MAP'Unds'KItem'Unds'Map'Unds'KItem'Unds'KItem	Lbl'UndsLSqBUndsRSqB'orDefault'UndsUnds'MAP'Unds'KItem'Unds'Map'Unds'KItem'Unds'KItem.yaml
 Lbl'Tild'Int'Unds'	Lbl'Tild'Int'Unds'.yaml
 Lblproject'Coln'Float	Lblproject'Coln'Float.yaml
@@ -52,6 +55,7 @@ LblintersectSet'LParUndsCommUndsRParUnds'SET'Unds'Set'Unds'Set'Unds'Set	Lblinter
 Lblproject'Coln'Id	Lblproject'Coln'Id.yaml
 Lblproject'Coln'TCell	Lblproject'Coln'TCell.yaml
 Lbl'Unds-LT-Eqls'String'UndsUnds'STRING'Unds'Bool'Unds'String'Unds'String	Lbl'Unds-LT-Eqls'String'UndsUnds'STRING'Unds'Bool'Unds'String'Unds'String.yaml
+Lblproject'Coln'FunReturnType	Lblproject'Coln'FunReturnType.yaml
 Lblproject'Coln'GeneratedCounterCellOpt	Lblproject'Coln'GeneratedCounterCellOpt.yaml
 append	append.yaml
 Lblproject'Coln'StoreCell	Lblproject'Coln'StoreCell.yaml
@@ -131,6 +135,7 @@ Lbl'Unds'orElseBool'Unds'	Lbl'Unds'orElseBool'Unds'.yaml
 Lblproject'Coln'KResult	Lblproject'Coln'KResult.yaml
 Lblproject'Coln'IOInt	Lblproject'Coln'IOInt.yaml
 LblisTCellOpt	LblisTCellOpt.yaml
+LblisKotlinFun	LblisKotlinFun.yaml
 Lblproject'Coln'String	Lblproject'Coln'String.yaml
 Lbl'Hash'open'LParUndsRParUnds'K-IO'Unds'IOInt'Unds'String	Lbl'Hash'open'LParUndsRParUnds'K-IO'Unds'IOInt'Unds'String.yaml
 LblisKCellOpt	LblisKCellOpt.yaml
@@ -186,6 +191,7 @@ Lblproject'Coln'KItem	Lblproject'Coln'KItem.yaml
 Lbl'Unds'in'UndsUnds'LIST'Unds'Bool'Unds'KItem'Unds'List	Lbl'Unds'in'UndsUnds'LIST'Unds'Bool'Unds'KItem'Unds'List.yaml
 Lblproject'Coln'Stream	Lblproject'Coln'Stream.yaml
 LblisTCell	LblisTCell.yaml
+LblisFunBlock	LblisFunBlock.yaml
 Lblproject'ColnHash'tempFile'Coln'path	Lblproject'ColnHash'tempFile'Coln'path.yaml
 LblfreshId'LParUndsRParUnds'ID-SYNTAX'Unds'Id'Unds'Int	LblfreshId'LParUndsRParUnds'ID-SYNTAX'Unds'Id'Unds'Int.yaml
 Lblkeys'LParUndsRParUnds'MAP'Unds'Set'Unds'Map	Lblkeys'LParUndsRParUnds'MAP'Unds'Set'Unds'Map.yaml
