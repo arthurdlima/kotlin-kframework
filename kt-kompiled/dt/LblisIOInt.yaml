@@ -1,6 +1,6 @@
 default: &id001
   action:
-  - 3382
+  - 3470
   - []
 specializations:
 - - kseq{}
@@ -12,7 +12,7 @@ specializations:
         - - inj{SortIOInt{}, SortKItem{}}
           - &id002
             action:
-            - 3383
+            - 3471
             - []
           - [STRING.String]
         - - inj{SortInt{}, SortKItem{}}

@@ -8,16 +8,19 @@ specializations:
         specializations:
         - - inj{SortCell{}, SortKItem{}}
           - action:
-            - 3455
+            - 3557
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
         - - inj{SortLocCell{}, SortKItem{}}
           - &id001
             action:
-            - 3455
+            - 3557
             - - - &id002 ['0', '1']
                 - STRING.String
+          - [STRING.String]
+        - - inj{SortFunctionCell{}, SortKItem{}}
+          - *id001
           - [STRING.String]
         - - inj{SortKCell{}, SortKItem{}}
           - *id001
@@ -25,10 +28,22 @@ specializations:
         - - inj{SortTCell{}, SortKItem{}}
           - *id001
           - [STRING.String]
+        - - inj{SortLocalEnvCell{}, SortKItem{}}
+          - *id001
+          - [STRING.String]
+        - - inj{SortScopeCell{}, SortKItem{}}
+          - *id001
+          - [STRING.String]
         - - inj{SortStoreCell{}, SortKItem{}}
           - *id001
           - [STRING.String]
         - - inj{SortEnvCell{}, SortKItem{}}
+          - *id001
+          - [STRING.String]
+        - - inj{SortIdCell{}, SortKItem{}}
+          - *id001
+          - [STRING.String]
+        - - inj{SortFunThreadCell{}, SortKItem{}}
           - *id001
           - [STRING.String]
         sort: STRING.String

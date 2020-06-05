@@ -3,6 +3,7 @@ module KT-SYNTAX
   import DOMAINS
 
   syntax MainKotlinProg ::= "fun main()" "{" Block "}"
+                        | "fun main()" "{"  "}"
 
   syntax Block ::= "{" Statement "}"
                 | Statement
@@ -12,9 +13,13 @@ module KT-SYNTAX
   syntax FunReturnType ::= "String"
                         | "Int"
 
-  syntax KotlinFun ::= "fun" Id "(" ")" ":" FunReturnType FunBlock
+  syntax KotlinFun ::= "fun" Id "(" ")" ":" FunBlock
 
-  syntax FunBlock ::= "{" Statement "return" AExp "}"
+  syntax KotlinFunCall ::= Id "(" ")"
+                          | Id "(" ")" ";"
+
+  syntax FunBlock ::= FunReturnType "{" Statement "return" AExp "}"
+                  | FunReturnType "{" "return" AExp "}"
 // ------------------------------------------
 
 
@@ -54,6 +59,7 @@ module KT-SYNTAX
                     | Assigner2
                     | KotIntVarAssign
                     | KotlinFun
+                    | KotlinFunCall
                     | Statement Statement [left]
 
 
@@ -167,9 +173,26 @@ module KT-SYNTAX
       <env> ... I |-> L ... </env>
       <store> ... L |-> (V => V -Int 1) ... </store>
 
+  // REGRAS PARA FUNÇÕES KOTLIN
+  rule <k> fun I:Id () : FB:FunBlock => Skip ... </k>
+      ( .Bag => <funThread>
+          <id> I </id>
+          <scope> FB </scope>
+          <localEnv> .Map </localEnv>
+        </funThread>
+      )
+      //<funThread> M:Map => M I |-> FB </funThread>
 
+  rule <k> I:Id () => FB ... </k>
+      <funThread>
+          ...
+          <id> I </id>
+          <scope> FB </scope>
+          ...
+      </funThread>
 
-
+  //rule <k> I:Id (); => FB ... </k>
+      //<funThread> ... I |-> FB ... </funThread>
 //-----------------------------------------
 
   rule fun main() { B:Block } => B [structural]
@@ -221,6 +244,14 @@ module KT-SYNTAX
 
   configuration <T>
     <k> $PGM:MainKotlinProg </k>
+
+    <function>
+        <funThread multiplicity="*" color="blue" type="Map">
+            <id> .K </id>
+            <scope> .K </scope>
+            <localEnv> .Map </localEnv>
+        </funThread>
+    </function>
     <env> .Map </env>
     <store> .Map </store>
     <loc> 1 </loc>

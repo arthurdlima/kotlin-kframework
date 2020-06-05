@@ -8,14 +8,14 @@ specializations:
         specializations:
         - - inj{SortBlock{}, SortKItem{}}
           - action:
-            - 3453
+            - 3555
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
         - - inj{SortAssigner2{}, SortKItem{}}
           - &id001
             action:
-            - 3453
+            - 3555
             - - - &id002 ['0', '1']
                 - STRING.String
           - [STRING.String]
@@ -44,6 +44,9 @@ specializations:
           - *id001
           - [STRING.String]
         - - inj{SortStatement{}, SortKItem{}}
+          - *id001
+          - [STRING.String]
+        - - inj{SortKotlinFunCall{}, SortKItem{}}
           - *id001
           - [STRING.String]
         - - inj{SortInt{}, SortKItem{}}
