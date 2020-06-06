@@ -9,12 +9,11 @@ module KT-SYNTAX
                 | Statement
 
 
-
   //----------- KOTLIN FUNCTIONS -------------
   syntax FunReturnType ::= "String"
                         | "Int"
 
-  syntax KotlinFun ::= "fun" Id "(" ")" ":" FunReturnType Block 
+  syntax KotlinFun ::= "fun" Id "(" ")" ":" FunReturnType Block [strict(3)]
 
 
   syntax KotlinFunCall ::= Id "(" ")"
@@ -41,13 +40,14 @@ module KT-SYNTAX
 
   syntax DeclaredVar ::= VariableType Ids
 
-
   syntax UniqueIdAssigner ::= Id "=" AExp  [strict(2)]
 
 
-  syntax Assigner ::= DeclaredVar "=" AExp [strict(2)]
+  syntax Assigner ::= DeclaredVar "=" AExp ";" [strict(2)]
                   | UniqueIdAssigner
 
+  syntax Assigner2 ::= DeclaredVar "=" AExp [strict(2)]
+                   | UniqueIdAssigner
 //------------------------------------------
 
   syntax Statement ::= "if" "(" BExp ")" Block [strict(1)]
@@ -60,9 +60,12 @@ module KT-SYNTAX
                     | AExpMod
                     | Skip
                     | Assigner
+                    | Assigner2
                     | KotIntVarAssign
                     | KotlinFun
                     | KotlinFunCall
+                    | "{" Statement "return" AExp "}"
+                    | "{" "return" AExp "}"
                     | Statement Statement [left]
 
 
@@ -94,10 +97,12 @@ module KT-SYNTAX
 
   // ---------- REGRAS INTEIRO ------------
 
+  rule T:VariableType .Ids = _:Int ; => Skip
   rule T:VariableType .Ids = _:Int => Skip
-
   // REGRA KOTLIN ASSIGN INTEIRO
-  rule T:VariableType Id : Int => Skip
+
+  rule VariableType Id : Int => Skip
+  //rule VariableType .Ids : Int ; => Skip
 
   // REGRA KOTLIN ASSIGN INTEIRO EM MEMÓRIA --------
 
@@ -122,13 +127,22 @@ module KT-SYNTAX
     */
   // -------------------------------------------------
 
+  rule <k> var I:Id = V:Int ; => Skip ... </k>
+      <env> MEnv:Map => MEnv I |-> L </env>
+      <store> MStore:Map => MStore L |-> V </store>
+      <loc> L:Int => L +Int 1 </loc>
 
   rule <k> var I:Id = V:Int => Skip ... </k>
       <env> MEnv:Map => MEnv I |-> L </env>
       <store> MStore:Map => MStore L |-> V </store>
       <loc> L:Int => L +Int 1 </loc>
 
-  // Para: var x,y,z = n
+  // Para: var x,y,z = n; ou var x,y,z = n
+
+  rule <k> T:VariableType (I:Id, Is:Ids) = V:Int ; => T Is = V ; ... </k>
+      <env> MEnv:Map => MEnv I |-> L </env>
+      <store> MStore:Map => MStore L |-> V </store>
+      <loc> L:Int => L +Int 1 </loc>
 
   rule <k> T:VariableType (I:Id, Is:Ids) = V:Int => T Is = V ... </k>
       <env> MEnv:Map => MEnv I |-> L </env>
@@ -168,16 +182,13 @@ module KT-SYNTAX
 
   // REGRAS PARA FUNÇÕES KOTLIN
 
-  rule <k> fun I:Id(): VariableType { S:Statement } => Skip ... </k>
+  rule <k> fun I:Id () : FunReturnType S:Statement => Skip ... </k>
       ( .Bag => <funThread>
           <id> I </id>
           <scope> S </scope>
           <localEnv> .Map </localEnv>
         </funThread>
       )
-
-
-
       //<funThread> M:Map => M I |-> FB </funThread>
 
   rule <k> I:Id () => local(I, S) ... </k>
@@ -188,8 +199,7 @@ module KT-SYNTAX
           ...
       </funThread>
 
-
-  rule <k> local(FunId:Id, var I:Id = V:Int) => Skip ... </k>
+  rule <k> local(FunId:Id, VariableType I:Id = V:Int;) => Skip ... </k>
       <funThread>
           ...
           <id> FunId </id>
@@ -198,7 +208,6 @@ module KT-SYNTAX
       </funThread>
       <store> SMap:Map => SMap L |-> V </store>
       <loc> L => L +Int 1 </loc>
-
 
 
   //rule <k> I:Id (); => FB ... </k>
@@ -256,8 +265,9 @@ module KT-SYNTAX
 
   configuration <T>
     <k> $PGM:MainKotlinProg </k>
-    <function color="green">
-        <funThread multiplicity="*" color="red" type="Map">
+
+    <function>
+        <funThread multiplicity="*" color="blue" type="Map">
             <id> .K </id>
             <scope> .K </scope>
             <localEnv> .Map </localEnv>

@@ -8,19 +8,16 @@ specializations:
         specializations:
         - - inj{SortStatement{}, SortKItem{}}
           - action:
-            - 3602
+            - 3557
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
-        - - inj{SortAssigner2{}, SortKItem{}}
+        - - inj{SortAssigner{}, SortKItem{}}
           - &id001
             action:
-            - 3602
+            - 3557
             - - - &id002 ['0', '1']
                 - STRING.String
-          - [STRING.String]
-        - - inj{SortAssigner{}, SortKItem{}}
-          - *id001
           - [STRING.String]
         - - inj{SortAExpMod{}, SortKItem{}}
           - *id001

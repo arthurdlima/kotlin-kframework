@@ -1,9 +1,10 @@
 
 fun main() {
-integer x = 20
-integer x = 40
+  var x = 1
+  var y = 2
   fun sum(): Int {
-    return 2
+    var x = 60
+    var y = 90
   }
 
   sum()

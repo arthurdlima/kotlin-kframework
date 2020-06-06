@@ -5,7 +5,7 @@ module HOPPER-SYNTAX
 
     syntax Skip ::= "Skip"
 
-    syntax Block ::= "{" Stmt "}"
+    syntax Block ::= "{" Stmt "}" 
                 | Stmt
 
     syntax Stmt ::= "if" "(" BExp ")" Block [strict(1)]
@@ -72,7 +72,7 @@ module HOPPER-SYNTAX
     rule program { B:Block } => B [structural]
 
     rule S1:Stmt S2:Stmt => S1 ~> S2 [structural]
-    //rule local(I:Id, S1:Stmt S2:Stmt) => local(I, S1) ~> local(I, S2) [structural]
+    rule local(I:Id, S1:Stmt S2:Stmt) => local(I, S1) ~> local(I, S2) [structural]
 
     rule Skip => .
 

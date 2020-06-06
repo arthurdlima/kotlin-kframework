@@ -1,6 +1,13 @@
 program {
 
 integer x = 2;
-integer y = x+2;
+integer y = 4;
+
+  function sum () {
+    integer x = 20;
+    integer y =40;
+  }
+
+sum();
 
 }
