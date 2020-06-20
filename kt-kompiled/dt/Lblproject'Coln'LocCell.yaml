@@ -8,7 +8,7 @@ specializations:
         specializations:
         - - inj{SortLocCell{}, SortKItem{}}
           - action:
-            - 3546
+            - 3603
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]

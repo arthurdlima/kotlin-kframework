@@ -9,26 +9,36 @@ module KT-SYNTAX
                 | Statement
 
 
+
   //----------- KOTLIN FUNCTIONS -------------
-  syntax FunReturnType ::= "String"
-                        | "Int"
+  syntax Params ::= List{Id, ","}
 
-  syntax KotlinFun ::= "fun" Id "(" ")" ":" FunReturnType Block [strict(3)]
+  syntax FunReturnType ::= "Int"
+
+  syntax FunReturn ::= AExp
 
 
-  syntax KotlinFunCall ::= Id "(" ")"
-                        //  | Id "(" ")" ";"
+  syntax KotlinFun ::= "fun" Id "(" Params ")" ":" FunReturnType Block
+
+  syntax Values ::= List{Int, ","}
+
+  //Botei o ";" por enquanto, resolver ambiguidade ao tirar..
+  syntax KotlinFunCall ::= Id "(" Values ")" ";"
+
+  //rule fun I:Id ( P:Params ) : F:FunReturnType B:Block => fun I (P) : F B [structural]
+
+
+  //rule I:Id ( P:Params ) => fun Id ( Params ) : FunReturnType Block
 
   /*Declarando e usando internamente ao .K, para
   para busca de funções pelo seu Id, retornando também
   seu statmente */
   syntax LocalFun ::= "local" "(" Id "," Statement ")"
 
-// ------------------------------------------
-
+  // ------------------------------------------
+  //Obs: LEMBRAR DE USAR: syntax values ::= Int | Bool
 
   // ------ DECLARAÇÃO DE VARIÁVEIS -------
-
 
   syntax VariableType ::= "var"
 
@@ -40,14 +50,13 @@ module KT-SYNTAX
 
   syntax DeclaredVar ::= VariableType Ids
 
+
   syntax UniqueIdAssigner ::= Id "=" AExp  [strict(2)]
 
 
-  syntax Assigner ::= DeclaredVar "=" AExp ";" [strict(2)]
+  syntax Assigner ::= DeclaredVar "=" AExp [strict(2)]
                   | UniqueIdAssigner
 
-  syntax Assigner2 ::= DeclaredVar "=" AExp [strict(2)]
-                   | UniqueIdAssigner
 //------------------------------------------
 
   syntax Statement ::= "if" "(" BExp ")" Block [strict(1)]
@@ -60,12 +69,10 @@ module KT-SYNTAX
                     | AExpMod
                     | Skip
                     | Assigner
-                    | Assigner2
                     | KotIntVarAssign
                     | KotlinFun
                     | KotlinFunCall
-                    | "{" Statement "return" AExp "}"
-                    | "{" "return" AExp "}"
+                    | "return" FunReturn
                     | Statement Statement [left]
 
 
@@ -97,12 +104,10 @@ module KT-SYNTAX
 
   // ---------- REGRAS INTEIRO ------------
 
-  rule T:VariableType .Ids = _:Int ; => Skip
   rule T:VariableType .Ids = _:Int => Skip
-  // REGRA KOTLIN ASSIGN INTEIRO
 
-  rule VariableType Id : Int => Skip
-  //rule VariableType .Ids : Int ; => Skip
+  // REGRA KOTLIN ASSIGN INTEIRO
+  rule T:VariableType Id : Int => Skip
 
   // REGRA KOTLIN ASSIGN INTEIRO EM MEMÓRIA --------
 
@@ -127,22 +132,13 @@ module KT-SYNTAX
     */
   // -------------------------------------------------
 
-  rule <k> var I:Id = V:Int ; => Skip ... </k>
-      <env> MEnv:Map => MEnv I |-> L </env>
-      <store> MStore:Map => MStore L |-> V </store>
-      <loc> L:Int => L +Int 1 </loc>
 
   rule <k> var I:Id = V:Int => Skip ... </k>
       <env> MEnv:Map => MEnv I |-> L </env>
       <store> MStore:Map => MStore L |-> V </store>
       <loc> L:Int => L +Int 1 </loc>
 
-  // Para: var x,y,z = n; ou var x,y,z = n
-
-  rule <k> T:VariableType (I:Id, Is:Ids) = V:Int ; => T Is = V ; ... </k>
-      <env> MEnv:Map => MEnv I |-> L </env>
-      <store> MStore:Map => MStore L |-> V </store>
-      <loc> L:Int => L +Int 1 </loc>
+  // Para: var x,y,z = n
 
   rule <k> T:VariableType (I:Id, Is:Ids) = V:Int => T Is = V ... </k>
       <env> MEnv:Map => MEnv I |-> L </env>
@@ -182,24 +178,44 @@ module KT-SYNTAX
 
   // REGRAS PARA FUNÇÕES KOTLIN
 
-  rule <k> fun I:Id () : FunReturnType S:Statement => Skip ... </k>
+  rule <k> fun I:Id ( P:Params ): VariableType { S:Statement } => Skip ... </k>
       ( .Bag => <funThread>
           <id> I </id>
           <scope> S </scope>
+          <params> P </params>
+          <temp> P </temp>
           <localEnv> .Map </localEnv>
         </funThread>
       )
+
+
+
       //<funThread> M:Map => M I |-> FB </funThread>
 
-  rule <k> I:Id () => local(I, S) ... </k>
+  rule <k> I:Id (.Values) ;  => local(I, S) ... </k>
       <funThread>
           ...
           <id> I </id>
           <scope> S:Statement </scope>
+          <params> P </params>
+          <temp> (.Params => P) </temp>
           ...
       </funThread>
 
-  rule <k> local(FunId:Id, VariableType I:Id = V:Int;) => Skip ... </k>
+  rule <k> I:Id ((V:Int, Vs:Values)) ;  => I:Id (Vs) ; ... </k>
+      <funThread>
+          ...
+          <id> I </id>
+          <temp> ((P:Id, Ps:Params) => Ps) </temp>
+          <localEnv> FunM:Map => FunM P |-> L </localEnv>
+          ...
+      </funThread>
+      <store> SMap:Map => SMap L |-> V </store>
+      <loc> L => L +Int 1 </loc>
+
+  // SYNTAX EXCLUSIVA PARA LOCAL
+
+  rule <k> local(FunId:Id, var I:Id = V:Int) => Skip ... </k>
       <funThread>
           ...
           <id> FunId </id>
@@ -210,8 +226,7 @@ module KT-SYNTAX
       <loc> L => L +Int 1 </loc>
 
 
-  //rule <k> I:Id (); => FB ... </k>
-      //<funThread> ... I |-> FB ... </funThread>
+
 //-----------------------------------------
 
   rule fun main() { B:Block } => B [structural]
@@ -220,7 +235,7 @@ module KT-SYNTAX
   // Resolve e empilha dois statements. Ex: x = 2 y = 4.
   // Separa (empilha) x=2, resolve, depois resolve y.
   rule S1:Statement S2:Statement => S1 ~> S2 [structural]
-  //rule FB1:FunBlock FB2:FunBlock => FB1 ~> FB2 [structural]
+
 
   rule local(I:Id, S1:Statement S2:Statement) => local(I, S1) ~> local(I, S2) [structural]
   rule Skip => .
@@ -265,11 +280,12 @@ module KT-SYNTAX
 
   configuration <T>
     <k> $PGM:MainKotlinProg </k>
-
-    <function>
-        <funThread multiplicity="*" color="blue" type="Map">
+    <function color="green">
+        <funThread multiplicity="*" color="red" type="Map">
             <id> .K </id>
             <scope> .K </scope>
+            <params> .K </params>
+            <temp> .K </temp>
             <localEnv> .Map </localEnv>
         </funThread>
     </function>

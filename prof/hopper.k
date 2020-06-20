@@ -5,7 +5,7 @@ module HOPPER-SYNTAX
 
     syntax Skip ::= "Skip"
 
-    syntax Block ::= "{" Stmt "}" 
+    syntax Block ::= "{" Stmt "}"
                 | Stmt
 
     syntax Stmt ::= "if" "(" BExp ")" Block [strict(1)]
