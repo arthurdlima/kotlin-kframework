@@ -2,8 +2,20 @@
 module KT-SYNTAX
   import DOMAINS
 
-  syntax MainKotlinProg ::= "fun main()" "{" Block "}"
-                        | "fun main()" "{"  "}"
+  syntax MainKotlinProg ::= FunctionMain Class
+
+
+  syntax FunctionMain ::= "fun main()" "{" Block "}"
+                      | "fun main()" "{"  "}"
+
+  syntax Class ::= "class" Id "("")" "{" Block "}"
+
+
+  //rule class Id () { B:Block } => B [structural]
+
+  rule FM:FunctionMain C:Class => FM ~> C [structural]
+
+  //rule C1:Class C2:Class => C1 ~> C2 [structural]
 
   syntax Block ::= "{" Statement "}"
                 | Statement
@@ -213,7 +225,6 @@ module KT-SYNTAX
       <store> SMap:Map => SMap L |-> V </store>
       <loc> L => L +Int 1 </loc>
 
-  // SYNTAX EXCLUSIVA PARA LOCAL
 
   rule <k> local(FunId:Id, var I:Id = V:Int) => Skip ... </k>
       <funThread>
@@ -225,7 +236,39 @@ module KT-SYNTAX
       <store> SMap:Map => SMap L |-> V </store>
       <loc> L => L +Int 1 </loc>
 
+// REGRAS PARA CLASSES
+/*
+<classThread multiplicity="*" color="yellow" type="Map">
+    <cId> .K </cId>
+    <cScope> .K </cScope>
+    <cLocalEnv> .Map </cLocalEnv>
+</classThread>
+*/
 
+//Botei o ";" por enquanto, resolver ambiguidade ao tirar..
+//syntax classInst ::=  Id "("")" ";;"
+//syntax cInstantiation ::= "var" Id "=" classInst
+//syntax LocalClass ::= "localClass" "(" Id "," Statement ")"
+
+// Rodando 1 vez para classe
+    rule <k> class I:Id () { S:Statement } => Skip ... </k>
+        ( .Bag => <classThread>
+            <cId> I </cId>
+            <cScope> S </cScope>
+            <cLocalEnv> .Map </cLocalEnv>
+          </classThread>
+        )
+   /*
+    rule <k> localClass(classId:Id, var I:Id = V:Int) => Skip ... </k>
+        <classThread>
+            ...
+            <cId> FunId </cId>
+            <cLocalEnv> FunM:Map => FunM I |-> L </cLocalEnv>
+            ...
+        </classThread>
+        <store> SMap:Map => SMap L |-> V </store>
+        <loc> L => L +Int 1 </loc>
+  */
 
 //-----------------------------------------
 
@@ -236,7 +279,7 @@ module KT-SYNTAX
   // Separa (empilha) x=2, resolve, depois resolve y.
   rule S1:Statement S2:Statement => S1 ~> S2 [structural]
 
-
+  //?? talvez precsise para classes
   rule local(I:Id, S1:Statement S2:Statement) => local(I, S1) ~> local(I, S2) [structural]
   rule Skip => .
 
@@ -289,6 +332,13 @@ module KT-SYNTAX
             <localEnv> .Map </localEnv>
         </funThread>
     </function>
+    <classes color="green">
+        <classThread multiplicity="*" color="red" type="Map">
+            <cId> .K </cId>
+            <cScope> .K </cScope>
+            <cLocalEnv> .Map </cLocalEnv>
+        </classThread>
+    </classes>
     <env> .Map </env>
     <store> .Map </store>
     <loc> 1 </loc>

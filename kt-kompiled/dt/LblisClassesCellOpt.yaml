@@ -1,0 +1,28 @@
+default: &id001
+  action:
+  - 3525
+  - []
+specializations:
+- - kseq{}
+  - default: *id001
+    specializations:
+    - - dotk{}
+      - default: *id001
+        specializations:
+        - - inj{SortClassesCellOpt{}, SortKItem{}}
+          - &id002
+            action:
+            - 3526
+            - []
+          - [STRING.String]
+        - - inj{SortClassesCell{}, SortKItem{}}
+          - *id002
+          - [STRING.String]
+        sort: STRING.String
+        occurrence: ['0', '1']
+      - []
+    sort: STRING.String
+    occurrence: ['1', '1']
+  - [STRING.String, STRING.String]
+sort: STRING.String
+occurrence: ['1']
