@@ -1,6 +1,6 @@
 default: &id001
   action:
-  - 3511
+  - 3449
   - []
 specializations:
 - - kseq{}
@@ -12,16 +12,10 @@ specializations:
         - - inj{SortCell{}, SortKItem{}}
           - &id002
             action:
-            - 3512
+            - 3450
             - []
           - [STRING.String]
-        - - inj{SortCScopeCell{}, SortKItem{}}
-          - *id002
-          - [STRING.String]
         - - inj{SortLocCell{}, SortKItem{}}
-          - *id002
-          - [STRING.String]
-        - - inj{SortClassesCell{}, SortKItem{}}
           - *id002
           - [STRING.String]
         - - inj{SortFunctionCell{}, SortKItem{}}
@@ -36,6 +30,9 @@ specializations:
         - - inj{SortTCell{}, SortKItem{}}
           - *id002
           - [STRING.String]
+        - - inj{SortMultsCell{}, SortKItem{}}
+          - *id002
+          - [STRING.String]
         - - inj{SortTempCell{}, SortKItem{}}
           - *id002
           - [STRING.String]
@@ -45,12 +42,6 @@ specializations:
         - - inj{SortScopeCell{}, SortKItem{}}
           - *id002
           - [STRING.String]
-        - - inj{SortCLocalEnvCell{}, SortKItem{}}
-          - *id002
-          - [STRING.String]
-        - - inj{SortClassThreadCell{}, SortKItem{}}
-          - *id002
-          - [STRING.String]
         - - inj{SortStoreCell{}, SortKItem{}}
           - *id002
           - [STRING.String]
@@ -58,9 +49,6 @@ specializations:
           - *id002
           - [STRING.String]
         - - inj{SortIdCell{}, SortKItem{}}
-          - *id002
-          - [STRING.String]
-        - - inj{SortCIdCell{}, SortKItem{}}
           - *id002
           - [STRING.String]
         - - inj{SortFunThreadCell{}, SortKItem{}}

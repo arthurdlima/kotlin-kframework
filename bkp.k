@@ -2,8 +2,13 @@
 module KT-SYNTAX
   import DOMAINS
 
-  syntax MainKotlinProg ::= "fun main()" "{" Block "}"
-                        | "fun main()" "{"  "}"
+  syntax MainKotlinProg ::= FunctionMain
+
+
+  syntax FunctionMain ::= "fun main()" "{" Block "}"
+
+
+  //rule C1:Class C2:Class => C1 ~> C2 [structural]
 
   syntax Block ::= "{" Statement "}"
                 | Statement
@@ -40,7 +45,7 @@ module KT-SYNTAX
 
   // ------ DECLARAÇÃO DE VARIÁVEIS -------
 
-  syntax VariableType ::= "var"
+  syntax VariableType ::= "var" | "val"
 
   //KOTLIN VARIABLE ASSIGN INT : var x: Int
   syntax KotIntVarAssign ::= VariableType Id ":" "Int"
@@ -114,37 +119,39 @@ module KT-SYNTAX
   rule <k> T:VariableType I:Id : Int => Skip ... </k>
     <env> MEnv:Map => MEnv I |-> L </env>
     <store> MStore:Map => MStore L |-> 0 </store>
-    <loc> L:Int => L +Int 1 </loc>
-  /*
-  rule <k> T:VariableType I:Id : Int ; => Skip ... </k>
-    <env> MEnv:Map => MEnv I |-> L </env>
-    <store> MStore:Map => MStore L |-> 0 </store>
+    <mults> Mults:Map => Mults L |-> 1 </mults>
     <loc> L:Int => L +Int 1 </loc>
 
-  rule <k> T:VariableType (I:Id, Xs:Ids) : Int ; => T Xs : Int; ... </k>
-    <env> MEnv:Map => MEnv I |-> L </env>
-    <store> MStore:Map => MStore L |-> 0 </store>
-    <loc> L:Int => L +Int 1 </loc>
-  rule <k> T:VariableType (I:Id, Xs:Ids) : Int => T Xs : Int ... </k>
-    <env> MEnv:Map => MEnv I |-> L </env>
-    <store> MStore:Map => MStore L |-> 0 </store>
-    <loc> L:Int => L +Int 1 </loc>
-    */
+
+
   // -------------------------------------------------
 
 
   rule <k> var I:Id = V:Int => Skip ... </k>
       <env> MEnv:Map => MEnv I |-> L </env>
       <store> MStore:Map => MStore L |-> V </store>
+      <mults> Mults:Map => Mults L |-> 1 </mults>
+      <loc> L:Int => L +Int 1 </loc>
+
+  rule <k> val I:Id = V:Int => Skip ... </k>
+      <env> MEnv:Map => MEnv I |-> L </env>
+      <store> MStore:Map => MStore L |-> V </store>
+      <mults> Mults:Map => Mults L |-> 0 </mults>
       <loc> L:Int => L +Int 1 </loc>
 
   // Para: var x,y,z = n
 
-  rule <k> T:VariableType (I:Id, Is:Ids) = V:Int => T Is = V ... </k>
+  rule <k> var (I:Id, Is:Ids) = V:Int => var Is = V ... </k>
       <env> MEnv:Map => MEnv I |-> L </env>
       <store> MStore:Map => MStore L |-> V </store>
+      <mults> Mults:Map => Mults L |-> 1 </mults>
       <loc> L:Int => L +Int 1 </loc>
 
+      rule <k> val (I:Id, Is:Ids) = V:Int => val Is = V ... </k>
+          <env> MEnv:Map => MEnv I |-> L </env>
+          <store> MStore:Map => MStore L |-> V </store>
+          <mults> Mults:Map => Mults L |-> 0 </mults>
+          <loc> L:Int => L +Int 1 </loc>
 
   // ------- REGRAS BOOLEANO ---------------------------
 
@@ -152,6 +159,9 @@ module KT-SYNTAX
 
 
   // ------ Alteração de variavies em memória abaixo-----------
+
+  syntax LocalResolveAritm ::= "localResolveAritm" "(" Id "," Statement ")"
+
 
   rule <k> I:Id = V:Int => Skip ... </k>
       <env> ... I |-> L ... </env>
@@ -189,9 +199,6 @@ module KT-SYNTAX
       )
 
 
-
-      //<funThread> M:Map => M I |-> FB </funThread>
-
   rule <k> I:Id (.Values) ;  => local(I, S) ... </k>
       <funThread>
           ...
@@ -202,6 +209,7 @@ module KT-SYNTAX
           ...
       </funThread>
 
+      //guardar param em memoria, recursivo
   rule <k> I:Id ((V:Int, Vs:Values)) ;  => I:Id (Vs) ; ... </k>
       <funThread>
           ...
@@ -213,7 +221,6 @@ module KT-SYNTAX
       <store> SMap:Map => SMap L |-> V </store>
       <loc> L => L +Int 1 </loc>
 
-  // SYNTAX EXCLUSIVA PARA LOCAL
 
   rule <k> local(FunId:Id, var I:Id = V:Int) => Skip ... </k>
       <funThread>
@@ -227,8 +234,6 @@ module KT-SYNTAX
 
 
 
-//-----------------------------------------
-
   rule fun main() { B:Block } => B [structural]
 
   //rule fun Id () : FB:FunBlock => FB [structural]
@@ -236,7 +241,7 @@ module KT-SYNTAX
   // Separa (empilha) x=2, resolve, depois resolve y.
   rule S1:Statement S2:Statement => S1 ~> S2 [structural]
 
-
+  //?? talvez precsise para classes
   rule local(I:Id, S1:Statement S2:Statement) => local(I, S1) ~> local(I, S2) [structural]
   rule Skip => .
 
@@ -291,9 +296,13 @@ module KT-SYNTAX
     </function>
     <env> .Map </env>
     <store> .Map </store>
+    <mults> .Map </mults>
     <loc> 1 </loc>
   </T>
-
+  /* O "*" significa que pode ser guardadas quantas celulas
+    forem necessárias. Neste caso, quantos threads de objetos,
+    classes, e funções forem necessárias
+  */
   endmodule
 
 

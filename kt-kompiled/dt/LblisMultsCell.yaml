@@ -1,6 +1,6 @@
 default: &id001
   action:
-  - 3521
+  - 3540
   - []
 specializations:
 - - kseq{}
@@ -9,9 +9,9 @@ specializations:
     - - dotk{}
       - default: *id001
         specializations:
-        - - inj{SortClassesCell{}, SortKItem{}}
+        - - inj{SortMultsCell{}, SortKItem{}}
           - action:
-            - 3522
+            - 3541
             - []
           - [STRING.String]
         sort: STRING.String

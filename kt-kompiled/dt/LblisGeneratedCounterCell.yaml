@@ -1,6 +1,6 @@
 default: &id001
   action:
-  - 3555
+  - 3479
   - []
 specializations:
 - - kseq{}
@@ -11,7 +11,7 @@ specializations:
         specializations:
         - - inj{SortGeneratedCounterCell{}, SortKItem{}}
           - action:
-            - 3556
+            - 3480
             - []
           - [STRING.String]
         sort: STRING.String

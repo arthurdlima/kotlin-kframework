@@ -8,7 +8,7 @@ specializations:
         specializations:
         - - inj{SortElseIfStatement{}, SortKItem{}}
           - action:
-            - 3682
+            - 3599
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]

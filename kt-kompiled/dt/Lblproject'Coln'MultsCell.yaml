@@ -6,9 +6,9 @@ specializations:
     - - dotk{}
       - default: fail
         specializations:
-        - - inj{SortClassesCellFragment{}, SortKItem{}}
+        - - inj{SortMultsCell{}, SortKItem{}}
           - action:
-            - 3679
+            - 3641
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]

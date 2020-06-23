@@ -8,7 +8,7 @@ specializations:
         specializations:
         - - inj{SortFunThreadCell{}, SortKItem{}}
           - action:
-            - 3688
+            - 3605
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]

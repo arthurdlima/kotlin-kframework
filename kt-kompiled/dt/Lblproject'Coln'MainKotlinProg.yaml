@@ -8,12 +8,18 @@ specializations:
         specializations:
         - - inj{SortMainKotlinProg{}, SortKItem{}}
           - action:
-            - 3721
+            - 3639
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
+        - - inj{SortFunctionMain{}, SortKItem{}}
+          - action:
+            - 3639
+            - - - &id001 ['0', '1']
+                - STRING.String
+          - [STRING.String]
         sort: STRING.String
-        occurrence: ['0', '1']
+        occurrence: *id001
       - []
     sort: STRING.String
     occurrence: ['1', '1']

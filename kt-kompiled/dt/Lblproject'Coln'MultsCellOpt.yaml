@@ -6,14 +6,20 @@ specializations:
     - - dotk{}
       - default: fail
         specializations:
-        - - inj{SortCLocalEnvCell{}, SortKItem{}}
+        - - inj{SortMultsCellOpt{}, SortKItem{}}
           - action:
-            - 3669
+            - 3642
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
+        - - inj{SortMultsCell{}, SortKItem{}}
+          - action:
+            - 3642
+            - - - &id001 ['0', '1']
+                - STRING.String
+          - [STRING.String]
         sort: STRING.String
-        occurrence: ['0', '1']
+        occurrence: *id001
       - []
     sort: STRING.String
     occurrence: ['1', '1']

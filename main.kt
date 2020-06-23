@@ -1,11 +1,7 @@
 
 fun main() {
-  fun sum(a): Int {
-    var x = 40
-  }
 
-}
+  val x = 10
 
-class Student () {
-  var y = 40
+
 }
