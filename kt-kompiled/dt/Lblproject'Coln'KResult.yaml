@@ -8,20 +8,23 @@ specializations:
         specializations:
         - - inj{SortKResult{}, SortKItem{}}
           - action:
-            - 3628
+            - 3653
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
         - - inj{SortBool{}, SortKItem{}}
           - &id001
             action:
-            - 3628
+            - 3653
             - - - &id002 ['0', '1']
                 - STRING.String
           - [BOOL.Bool]
         - - inj{SortInt{}, SortKItem{}}
           - *id001
           - [INT.Int]
+        - - inj{SortString{}, SortKItem{}}
+          - *id001
+          - [STRING.String]
         sort: STRING.String
         occurrence: *id002
       - []

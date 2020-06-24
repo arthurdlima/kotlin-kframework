@@ -1,17 +1,19 @@
-default: fail
+default: &id001
+  action:
+  - 3559
+  - []
 specializations:
 - - kseq{}
-  - default: fail
+  - default: *id001
     specializations:
     - - dotk{}
-      - default: fail
+      - default: *id001
         specializations:
-        - - inj{SortBool{}, SortKItem{}}
+        - - inj{SortLocalResString{}, SortKItem{}}
           - action:
-            - 3621
-            - - - ['0', '0', '1']
-                - BOOL.Bool
-          - [BOOL.Bool]
+            - 3560
+            - []
+          - [STRING.String]
         sort: STRING.String
         occurrence: ['0', '1']
       - []

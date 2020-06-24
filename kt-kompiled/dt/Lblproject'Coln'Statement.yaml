@@ -8,14 +8,14 @@ specializations:
         specializations:
         - - inj{SortStatement{}, SortKItem{}}
           - action:
-            - 3650
+            - 3677
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
         - - inj{SortLocalResInt{}, SortKItem{}}
           - &id001
             action:
-            - 3650
+            - 3677
             - - - &id002 ['0', '1']
                 - STRING.String
           - [STRING.String]
@@ -49,6 +49,15 @@ specializations:
         - - inj{SortInt{}, SortKItem{}}
           - *id001
           - [INT.Int]
+        - - inj{SortLocalResString{}, SortKItem{}}
+          - *id001
+          - [STRING.String]
+        - - inj{SortLocalResId{}, SortKItem{}}
+          - *id001
+          - [STRING.String]
+        - - inj{SortString{}, SortKItem{}}
+          - *id001
+          - [STRING.String]
         sort: STRING.String
         occurrence: *id002
       - []

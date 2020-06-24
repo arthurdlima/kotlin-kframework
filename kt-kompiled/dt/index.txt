@@ -12,6 +12,7 @@ Lbl'Unds-GT-'Int'Unds'	Lbl'Unds-GT-'Int'Unds'.yaml
 LblisMap	LblisMap.yaml
 LblisMainKotlinProg	LblisMainKotlinProg.yaml
 LblisScopeCellOpt	LblisScopeCellOpt.yaml
+Lblproject'Coln'LocalResString	Lblproject'Coln'LocalResString.yaml
 LblinitKCell	LblinitKCell.yaml
 LblisGeneratedCounterCell	LblisGeneratedCounterCell.yaml
 Lbl'Unds'andThenBool'Unds'	Lbl'Unds'andThenBool'Unds'.yaml
@@ -101,9 +102,11 @@ LblisIds	LblisIds.yaml
 Lbl'Unds-GT-'String'UndsUnds'STRING'Unds'Bool'Unds'String'Unds'String	Lbl'Unds-GT-'String'UndsUnds'STRING'Unds'Bool'Unds'String'Unds'String.yaml
 Lbl'Hash'remove'LParUndsRParUnds'K-IO'Unds'K'Unds'String	Lbl'Hash'remove'LParUndsRParUnds'K-IO'Unds'K'Unds'String.yaml
 Lblproject'Coln'EnvCellOpt	Lblproject'Coln'EnvCellOpt.yaml
+LblisLocalResString	LblisLocalResString.yaml
 LblListItem	LblListItem.yaml
 Lblproject'Coln'AExp	Lblproject'Coln'AExp.yaml
 Lblproject'Coln'ParamsCell	Lblproject'Coln'ParamsCell.yaml
+LblisLocalResId	LblisLocalResId.yaml
 Lblproject'Coln'MultsCellOpt	Lblproject'Coln'MultsCellOpt.yaml
 LblisTempCellOpt	LblisTempCellOpt.yaml
 LblmaxInt'LParUndsCommUndsRParUnds'INT-COMMON'Unds'Int'Unds'Int'Unds'Int	LblmaxInt'LParUndsCommUndsRParUnds'INT-COMMON'Unds'Int'Unds'Int'Unds'Int.yaml
@@ -260,5 +263,6 @@ Lbl'UndsEqlsSlshEqls'K'Unds'	Lbl'UndsEqlsSlshEqls'K'Unds'.yaml
 Lblproject'Coln'Skip	Lblproject'Coln'Skip.yaml
 LblString2Id'LParUndsRParUnds'ID-SYNTAX'Unds'Id'Unds'String	LblString2Id'LParUndsRParUnds'ID-SYNTAX'Unds'Id'Unds'String.yaml
 Lblproject'Coln'FunctionMain	Lblproject'Coln'FunctionMain.yaml
+Lblproject'Coln'LocalResId	Lblproject'Coln'LocalResId.yaml
 LblisLocalResInt	LblisLocalResInt.yaml
 Lbl'Unds'List'Unds'	Lbl'Unds'List'Unds'.yaml
