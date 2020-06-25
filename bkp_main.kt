@@ -14,10 +14,26 @@ fun main() {
   y = 20
 }
 
-// Conc + print
+// var e constantes
 fun main() {
   val x = "arthur"
   var y = " esdras"
+  x = y
+}
+
+// Concatenação de string;
+
+fun main() {
+  var x = "arthur"
+  var y = "esdras"
+  x + y
+}
+
+// Print statmente
+
+fun main() {
+  var x = "arthur"
+  var y = "esdras"
   print(x+y)
 }
 

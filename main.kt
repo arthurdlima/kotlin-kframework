@@ -1,6 +1,5 @@
 fun main() {
-  val x = "arthur"
-  x = "..."
-
-  var y = x
+  var x = "arthur"
+  var y = "esdras"
+  print(x+y)
 }
