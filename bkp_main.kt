@@ -1,12 +1,11 @@
-// Variaveis e constantes
+//  1) Variaveis e constantes
 fun main() {
   val x = "arthur"
   x = "..."
-
   var y = x
 }
 
-// kotlin assign
+// 2) kotlin assign
 fun main() {
   var y: Int
   var x: String
@@ -14,14 +13,7 @@ fun main() {
   y = 20
 }
 
-// var e constantes
-fun main() {
-  val x = "arthur"
-  var y = " esdras"
-  x = y
-}
-
-// Concatenação de string;
+// 3) Concatenação de string
 
 fun main() {
   var x = "arthur"
@@ -29,7 +21,7 @@ fun main() {
   x + y
 }
 
-// Print statmente
+// 4) Print statmente
 
 fun main() {
   var x = "arthur"
@@ -37,7 +29,7 @@ fun main() {
   print(x+y)
 }
 
-// kotlin when
+// 5) kotlin when
 fun main() {
   val nome = "arthur"
   when(nome){
@@ -46,7 +38,7 @@ fun main() {
   }
 }
 
-// kotlin fun
+// 6) kotlin fun
 fun main() {
   fun soma(): Int {
     var x = 2
