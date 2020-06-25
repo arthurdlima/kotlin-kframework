@@ -16,3 +16,17 @@ fun main() {
   sub()
   var z = 70
 }
+
+// resolver o problema desse else. Só funciona se tiver uma variavel no if
+
+fun main() {
+
+  if( 2==3 ) {
+
+  } else {
+    print("its now working")
+  }
+
+
+
+}

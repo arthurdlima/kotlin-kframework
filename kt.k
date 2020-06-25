@@ -9,7 +9,6 @@ module KT-SYNTAX
   syntax Block ::= "{" Statement "}"
                 | Statement
 
-
   //----------- KOTLIN FUNCTIONS ------------- //
   syntax Params ::= List{Id, ","}
 
@@ -72,7 +71,24 @@ module KT-SYNTAX
                     | LocalResInt
                     | LocalResString
                     | LocalResId
+                    | "print" "(" AExps ")"
                     | Statement Statement [left]
+
+
+  // ---------- para fazer print ---------------- //
+
+  syntax Printable ::= Int | String
+
+  syntax AExps ::= List{AExp,","}
+
+  context print(HOLE:AExp, AEs:AExps)
+
+  rule print(.AExps) => .  [structural]
+
+  rule <k> print(P:Printable, AEs => AEs) ...</k>
+     <out> ... .List => ListItem(P) </out>  [print]
+// ----------------------------------------------- //
+
 
 
 
@@ -82,6 +98,7 @@ module KT-SYNTAX
 
 
   syntax BExp ::= Bool
+                | AExp "==" AExp [strict]
                 | AExp "<" AExp [strict]
                 | AExp "<=" AExp [strict]
                 | AExp ">" AExp [strict]
@@ -97,7 +114,7 @@ module KT-SYNTAX
                 | AExp "-" AExp [seqstrict]
                 | AExp "+" AExp [seqstrict]
                 | "(" AExp ")" [bracket]
-
+                | Printable
 
 
 
@@ -317,6 +334,7 @@ module KT-SYNTAX
   rule true ? B:Block : _ => B
   rule false ? _ : B:Block => B
 
+  rule I1:Int == I2:Int => I1 ==Int I2
   rule I1:Int + I2:Int => I1 +Int I2
   rule I1:Int - I2:Int => I1 -Int I2
   rule I1:Int * I2:Int => I1 *Int I2
@@ -343,6 +361,7 @@ module KT-SYNTAX
     <env> .Map </env>
     <store> .Map </store>
     <mults> .Map </mults>
+    <out color="blue"> .List </out>
     <loc> 1 </loc>
   </T>
   /* O "*" significa que pode ser guardadas quantas celulas

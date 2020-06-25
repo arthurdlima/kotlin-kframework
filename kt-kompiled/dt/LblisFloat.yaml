@@ -1,6 +1,6 @@
 default: &id001
   action:
-  - 3480
+  - 3602
   - []
 specializations:
 - - kseq{}
@@ -11,7 +11,7 @@ specializations:
         specializations:
         - - inj{SortFloat{}, SortKItem{}}
           - action:
-            - 3481
+            - 3603
             - []
           - [FLOAT.Float]
         sort: STRING.String

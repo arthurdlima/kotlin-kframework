@@ -4,18 +4,13 @@ module KT-SYNTAX
 
   syntax MainKotlinProg ::= FunctionMain
 
-
   syntax FunctionMain ::= "fun main()" "{" Block "}"
-
-
-  //rule C1:Class C2:Class => C1 ~> C2 [structural]
 
   syntax Block ::= "{" Statement "}"
                 | Statement
 
 
-
-  //----------- KOTLIN FUNCTIONS -------------
+  //----------- KOTLIN FUNCTIONS ------------- //
   syntax Params ::= List{Id, ","}
 
   syntax FunReturnType ::= "Int"
@@ -30,10 +25,6 @@ module KT-SYNTAX
   //Botei o ";" por enquanto, resolver ambiguidade ao tirar..
   syntax KotlinFunCall ::= Id "(" Values ")" ";"
 
-  //rule fun I:Id ( P:Params ) : F:FunReturnType B:Block => fun I (P) : F B [structural]
-
-
-  //rule I:Id ( P:Params ) => fun Id ( Params ) : FunReturnType Block
 
   /*Declarando e usando internamente ao .K, para
   para busca de funções pelo seu Id, retornando também
@@ -78,6 +69,9 @@ module KT-SYNTAX
                     | KotlinFun
                     | KotlinFunCall
                     | "return" FunReturn
+                    | LocalResInt
+                    | LocalResString
+                    | LocalResId
                     | Statement Statement [left]
 
 
@@ -96,13 +90,15 @@ module KT-SYNTAX
 
   syntax AExpMod ::= Id "++"
                   | Id "--"
-  syntax AExp ::= Int
+  syntax AExp ::= Int | String
                 | Id
                 > left: AExp "*" AExp [seqstrict]
                 > left: AExp "/" AExp [seqstrict]
                 | AExp "-" AExp [seqstrict]
                 | AExp "+" AExp [seqstrict]
                 | "(" AExp ")" [bracket]
+
+
 
 
   syntax Skip ::= "Skip"
@@ -122,10 +118,7 @@ module KT-SYNTAX
     <mults> Mults:Map => Mults L |-> 1 </mults>
     <loc> L:Int => L +Int 1 </loc>
 
-
-
-  // -------------------------------------------------
-
+// REGRAS PARA CONSTANTES E VARIÁVEIS -> Int
 
   rule <k> var I:Id = V:Int => Skip ... </k>
       <env> MEnv:Map => MEnv I |-> L </env>
@@ -147,29 +140,36 @@ module KT-SYNTAX
       <mults> Mults:Map => Mults L |-> 1 </mults>
       <loc> L:Int => L +Int 1 </loc>
 
-      rule <k> val (I:Id, Is:Ids) = V:Int => val Is = V ... </k>
-          <env> MEnv:Map => MEnv I |-> L </env>
-          <store> MStore:Map => MStore L |-> V </store>
-          <mults> Mults:Map => Mults L |-> 0 </mults>
-          <loc> L:Int => L +Int 1 </loc>
-
-  // ------- REGRAS BOOLEANO ---------------------------
+  rule <k> val (I:Id, Is:Ids) = V:Int => val Is = V ... </k>
+      <env> MEnv:Map => MEnv I |-> L </env>
+      <store> MStore:Map => MStore L |-> V </store>
+      <mults> Mults:Map => Mults L |-> 0 </mults>
+      <loc> L:Int => L +Int 1 </loc>
 
 
 
+  // ------ Alteração de variavies em memória -> Int -----------
 
-  // ------ Alteração de variavies em memória abaixo-----------
+  syntax LocalResInt ::= "localResInt" "(" Id "," Int ")"
+  syntax LocalResId ::= "localResId" "(" Id "," Id ")"
 
-  syntax LocalResolveAritm ::= "localResolveAritm" "(" Id "," Statement ")"
-
-
-  rule <k> I:Id = V:Int => Skip ... </k>
+  rule <k> I:Id = V:Int => if( S>0 ) {localResInt ( I , V )} ...  </k>
       <env> ... I |-> L ... </env>
-      <store> ... L |-> (_ => V) ... </store>
+      <mults> ... L |-> S ...  </mults>
 
-  rule <k> I1:Id = I2:Id => I1 = V ... </k>
-      <env> ... I2 |-> L ... </env>
-      <store> ... L |-> V  ... </store>
+
+    rule <k> localResInt(I:Id , V:Int) => Skip ... </k>
+    <env> ... I |-> L ... </env>
+    <store> ... L |-> (_ => V) ... </store>
+
+
+  rule <k> I1:Id = I2:Id => if( S>0 ) {localResId ( I1 , I2 )} ... </k>
+      <env> ... I1 |-> L ... </env>
+      <mults> ... L |-> S ...  </mults>
+
+  rule <k> localResId(I1:Id , I2:Id) => I1 = V ... </k>
+        <env> ... I2 |-> L ... </env>
+        <store> ... L |-> V  ... </store>
 
 
   rule <k> I:Id => V ... </k>
@@ -185,6 +185,50 @@ module KT-SYNTAX
   rule <k> I:Id -- => Skip ... </k>
       <env> ... I |-> L ... </env>
       <store> ... L |-> (V => V -Int 1) ... </store>
+
+
+
+  // ------- REGRAS STRINGS -------------------------- //
+  syntax LocalResString ::= "localResString" "(" Id "," String ")"
+
+  rule T:VariableType .Ids = _:String => Skip
+
+  rule <k> var I:Id = S:String => Skip ... </k>
+      <env> MEnv:Map => MEnv I |-> L </env>
+      <store> MStore:Map => MStore L |-> S </store>
+      <mults> Mults:Map => Mults L |-> 1 </mults>
+      <loc> L:Int => L +Int 1 </loc>
+
+  rule <k> var (I:Id, Is:Ids) = S:String => var Is = S ... </k>
+      <env> MEnv:Map => MEnv I |-> L </env>
+      <store> MStore:Map => MStore L |-> S </store>
+      <mults> Mults:Map => Mults L |-> 1 </mults>
+      <loc> L:Int => L +Int 1 </loc>
+
+  rule <k> val I:Id = Stg:String => Skip ... </k>
+      <env> MEnv:Map => MEnv I |-> L </env>
+      <store> MStore:Map => MStore L |-> Stg </store>
+      <mults> Mults:Map => Mults L |-> 0 </mults>
+      <loc> L:Int => L +Int 1 </loc>
+
+  rule <k> val (I:Id, Is:Ids) = Stg:String => val Is = Stg ... </k>
+      <env> MEnv:Map => MEnv I |-> L </env>
+      <store> MStore:Map => MStore L |-> Stg </store>
+      <mults> Mults:Map => Mults L |-> 0 </mults>
+      <loc> L:Int => L +Int 1 </loc>
+
+
+  rule <k> I:Id = Stg:String => if( S>0 ) {localResString ( I , Stg )} ...  </k>
+      <env> ... I |-> L ... </env>
+      <mults> ... L |-> S ...  </mults>
+
+
+    rule <k> localResString(I:Id , Stg:String) => Skip ... </k>
+    <env> ... I |-> L ... </env>
+    <store> ... L |-> (_ => Stg) ... </store>
+
+
+
 
   // REGRAS PARA FUNÇÕES KOTLIN
 
@@ -281,6 +325,8 @@ module KT-SYNTAX
   rule I1:Int <= I2:Int => I1 <=Int I2
   rule I1:Int > I2:Int => I1 >Int I2
 
+  rule S1:String + S2:String => S1 +String S2
+
   // ----------- Configurações -------------
 
   configuration <T>
@@ -309,5 +355,5 @@ module KT-SYNTAX
 module KT
     import DOMAINS
     import KT-SYNTAX
-    syntax KResult ::= Int | Bool
+    syntax KResult ::= Int | Bool | String
 endmodule
