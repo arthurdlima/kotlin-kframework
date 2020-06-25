@@ -35,6 +35,7 @@ fun main() {
   fun soma(): Int {
     var x = 2
     var y = 3
+    return 1
   }
   soma();
 }
