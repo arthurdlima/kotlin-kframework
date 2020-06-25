@@ -8,13 +8,13 @@ specializations:
         specializations:
         - - inj{SortIOFile{}, SortKItem{}}
           - action:
-            - 3771
+            - 3794
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
         - - inj{SortIOError{}, SortKItem{}}
           - action:
-            - 3771
+            - 3794
             - - - &id001 ['0', '1']
                 - STRING.String
           - [STRING.String]

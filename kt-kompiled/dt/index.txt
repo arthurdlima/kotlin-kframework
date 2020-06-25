@@ -103,6 +103,7 @@ LblisIds	LblisIds.yaml
 Lbl'Unds-GT-'String'UndsUnds'STRING'Unds'Bool'Unds'String'Unds'String	Lbl'Unds-GT-'String'UndsUnds'STRING'Unds'Bool'Unds'String'Unds'String.yaml
 Lbl'Hash'remove'LParUndsRParUnds'K-IO'Unds'K'Unds'String	Lbl'Hash'remove'LParUndsRParUnds'K-IO'Unds'K'Unds'String.yaml
 LblisOutCellOpt	LblisOutCellOpt.yaml
+LblisWhenStructure	LblisWhenStructure.yaml
 Lblproject'Coln'EnvCellOpt	Lblproject'Coln'EnvCellOpt.yaml
 LblisLocalResString	LblisLocalResString.yaml
 LblisOutCell	LblisOutCell.yaml
@@ -156,6 +157,7 @@ LblisScopeCell	LblisScopeCell.yaml
 Lblproject'Coln'MainKotlinProg	Lblproject'Coln'MainKotlinProg.yaml
 Lbl'UndsPerc'Int'Unds'	Lbl'UndsPerc'Int'Unds'.yaml
 Lblproject'Coln'Ids	Lblproject'Coln'Ids.yaml
+Lblproject'Coln'WhenStructure	Lblproject'Coln'WhenStructure.yaml
 LblisKConfigVar	LblisKConfigVar.yaml
 LblisIdCellOpt	LblisIdCellOpt.yaml
 LblisLocalEnvCellOpt	LblisLocalEnvCellOpt.yaml

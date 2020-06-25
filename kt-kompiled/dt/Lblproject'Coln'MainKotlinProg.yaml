@@ -8,13 +8,13 @@ specializations:
         specializations:
         - - inj{SortMainKotlinProg{}, SortKItem{}}
           - action:
-            - 3795
+            - 3818
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
         - - inj{SortFunctionMain{}, SortKItem{}}
           - action:
-            - 3795
+            - 3818
             - - - &id001 ['0', '1']
                 - STRING.String
           - [STRING.String]

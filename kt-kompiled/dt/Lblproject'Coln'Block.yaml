@@ -8,16 +8,19 @@ specializations:
         specializations:
         - - inj{SortBlock{}, SortKItem{}}
           - action:
-            - 3749
+            - 3772
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
-        - - inj{SortLocalResInt{}, SortKItem{}}
+        - - inj{SortWhenStructure{}, SortKItem{}}
           - &id001
             action:
-            - 3749
+            - 3772
             - - - &id002 ['0', '1']
                 - STRING.String
+          - [STRING.String]
+        - - inj{SortLocalResInt{}, SortKItem{}}
+          - *id001
           - [STRING.String]
         - - inj{SortAssigner{}, SortKItem{}}
           - *id001

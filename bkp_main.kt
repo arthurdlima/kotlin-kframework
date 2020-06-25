@@ -1,32 +1,40 @@
-
+// Variaveis e constantes
 fun main() {
-  var x = 10
-  var y = 20
+  val x = "arthur"
+  x = "..."
 
-  fun sum(): Int {
-    var x = 30
-    var y = 40
-  }
-
-  fun sub(): Int {
-    var x = 50
-    var y = 60
-  }
-  sum()
-  sub()
-  var z = 70
+  var y = x
 }
 
-// resolver o problema desse else. Só funciona se tiver uma variavel no if
-
+// kotlin assign
 fun main() {
+  var y: Int
+  var x: String
+  x = "arthur"
+  y = 20
+}
 
-  if( 2==3 ) {
+// Conc + print
+fun main() {
+  val x = "arthur"
+  var y = " esdras"
+  print(x+y)
+}
 
-  } else {
-    print("its now working")
+// kotlin when
+fun main() {
+  val nome = "arthur"
+  when(nome){
+    "lucas" -> print("eh lucas!");
+    "arthur" -> print("eh Arthur!");
   }
+}
 
-
-
+// kotlin fun
+fun main() {
+  fun soma(): Int {
+    var x = 2
+    var y = 3
+  }
+  soma();
 }

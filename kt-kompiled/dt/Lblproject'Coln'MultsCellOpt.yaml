@@ -8,13 +8,13 @@ specializations:
         specializations:
         - - inj{SortMultsCellOpt{}, SortKItem{}}
           - action:
-            - 3798
+            - 3821
             - - - ['0', '0', '1']
                 - STRING.String
           - [STRING.String]
         - - inj{SortMultsCell{}, SortKItem{}}
           - action:
-            - 3798
+            - 3821
             - - - &id001 ['0', '1']
                 - STRING.String
           - [STRING.String]
